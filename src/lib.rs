@@ -8,9 +8,9 @@ pub struct WindowRect{
 impl Default for WindowRect{
     fn default() -> Self {
         Self {
-            left: 500,
+            left: 600,
             top: 200,
-            right: 1200,
+            right: 1100,
             bottom: 700
         }
     }
