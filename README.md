@@ -4,5 +4,5 @@ Works in windows10 environment
 ## Cargo.toml
 ```
 [dependencies]
-slack = { git = "https://github.com/8bitTD/egui_utility", branch = "main" }
+egui_utility = { git = "https://github.com/8bitTD/egui_utility", branch = "main" }
 ```
