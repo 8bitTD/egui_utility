@@ -44,7 +44,7 @@ pub fn get_rect_from_json(tn: String)-> Option<WindowRect>{//jsonからWindowの
     jsn_path.push_str(format!("{}{}{}",document, &tn, "_ws.json").as_str());
     let contents = match std::fs::read_to_string(&jsn_path){
         Ok(contents) => contents,
-        Err(_error) => {return rect;}
+        Err(_error) => {return None;}
     };
     let wr:Result<WindowRect,_> = serde_json::from_str(&contents);
     if wr.is_ok(){
