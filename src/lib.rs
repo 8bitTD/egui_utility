@@ -54,7 +54,7 @@ pub fn get_rect_from_json(tn: String)-> Option<WindowRect>{//jsonからWindowの
     rect
 }  
 
-fn set_font(ctx: &eframe::egui::CtxRef, size: f32){
+pub fn set_font(ctx: &eframe::egui::CtxRef, size: f32){
     let mut txt_font = eframe::egui::FontDefinitions::default();
     txt_font.family_and_size.insert(eframe::egui::epaint::text::TextStyle::Body,(eframe::egui::epaint::text::FontFamily::Proportional, size));
     txt_font.family_and_size.insert(eframe::egui::epaint::text::TextStyle::Button,(eframe::egui::epaint::text::FontFamily::Proportional, size));
