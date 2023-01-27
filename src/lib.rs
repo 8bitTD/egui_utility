@@ -35,7 +35,7 @@ pub fn set_window_rect(rect: WindowRect){
     }
 }
 
-pub fn get_rect_from_json(tn: String)-> WindowRect{//jsonからWindowのサイズを取得する処理
+pub fn get_rect_from_json(tn: String)-> Option<WindowRect>{//jsonからWindowのサイズを取得する処理
     let mut rect = WindowRect::default();
     let mut jsn_path = dirs::home_dir().unwrap().as_os_str().to_str().unwrap().to_string();
     let document = "\\Documents\\script\\Rust\\";
@@ -44,7 +44,7 @@ pub fn get_rect_from_json(tn: String)-> WindowRect{//jsonからWindowのサイ�
     jsn_path.push_str(format!("{}{}{}",document, &tn, "_ws.json").as_str());
     let contents = match std::fs::read_to_string(&jsn_path){
         Ok(contents) => contents,
-        Err(_error) => {return rect;}
+        Err(_error) => {return None;}
     };
     let wr:Result<WindowRect,_> = serde_json::from_str(&contents);
     if wr.is_ok(){
@@ -54,5 +54,5 @@ pub fn get_rect_from_json(tn: String)-> WindowRect{//jsonからWindowのサイ�
         rect.right = w.right;
         rect.bottom = w.bottom;
     }
-    rect
+    Some(rect)
 }  
