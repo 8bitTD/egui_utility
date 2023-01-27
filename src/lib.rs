@@ -18,7 +18,7 @@ impl Default for WindowRect{
 pub fn get_window_rect() -> WindowRect{
     let mut rect = WindowRect::default();
     unsafe{
-        let hwnd = UI::WindowsAndMessaging::GetForegroundWindow();
+        let hwnd = windows::Win32::UI::WindowsAndMessaging::GetForegroundWindow();
         let mut w_rect = windows::Win32::Foundation::RECT::default();
         windows::Win32::UI::WindowsAndMessaging::GetWindowRect(hwnd, &mut w_rect);
         rect.left = w_rect.left;
@@ -30,7 +30,7 @@ pub fn get_window_rect() -> WindowRect{
 }
 pub fn set_window_rect(rect: WindowRect){
     unsafe{
-        let hwnd = UI::WindowsAndMessaging::GetForegroundWindow();
+        let hwnd = windwos::Win32::UI::WindowsAndMessaging::GetForegroundWindow();
         windows::Win32::UI::WindowsAndMessaging::MoveWindow(hwnd, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, true);
     }
 }
