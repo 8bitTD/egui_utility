@@ -30,7 +30,7 @@ pub fn get_window_rect() -> WindowRect{
 }
 pub fn set_window_rect(rect: WindowRect){
     unsafe{
-        let hwnd = windwos::Win32::UI::WindowsAndMessaging::GetForegroundWindow();
+        let hwnd = windows::Win32::UI::WindowsAndMessaging::GetForegroundWindow();
         windows::Win32::UI::WindowsAndMessaging::MoveWindow(hwnd, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, true);
     }
 }
