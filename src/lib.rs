@@ -18,20 +18,20 @@ impl Default for WindowRect{
 pub fn get_window_rect() -> WindowRect{
     let mut rect = WindowRect::default();
     unsafe{
-        let hwnd = winapi::um::winuser::GetActiveWindow();
-        let mut window: winapi::shared::windef::RECT = std::mem::zeroed();
-        winapi::um::winuser::GetWindowRect(hwnd, &mut window);
-        rect.left = window.left;
-        rect.top = window.top;
-        rect.right = window.right;
-        rect.bottom = window.bottom;
+        let hwnd = UI::WindowsAndMessaging::GetForegroundWindow();
+        let mut w_rect = windows::Win32::Foundation::RECT::default();
+        windows::Win32::UI::WindowsAndMessaging::GetWindowRect(hwnd, &mut w_rect);
+        rect.left = w_rect.left;
+        rect.top = w_rect.top;
+        rect.right = w_rect.right;
+        rect.bottom = w_rect.bottom;
     }
     rect
 }
 pub fn set_window_rect(rect: WindowRect){
     unsafe{
-        let hwnd = winapi::um::winuser::GetActiveWindow();
-        winapi::um::winuser::MoveWindow(hwnd,rect.left,rect.top,rect.right - rect.left,rect.bottom - rect.top,1);
+        let hwnd = UI::WindowsAndMessaging::GetForegroundWindow();
+        windows::Win32::UI::WindowsAndMessaging::MoveWindow(hwnd, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, true);
     }
 }
 
